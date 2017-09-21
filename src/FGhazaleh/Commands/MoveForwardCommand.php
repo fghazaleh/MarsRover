@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace FGhazaleh\Commands;
 
-
-use FGhazaleh\Location\Position;
+use FGhazaleh\Location\Coordinate;
 
 class MoveForwardCommand implements CommandInterface
 {
@@ -17,31 +17,31 @@ class MoveForwardCommand implements CommandInterface
     }
 
     /**
-     * @param Position $position
-     * @return Position ;
+     * @param Coordinate $c
+     * @return Coordinate;
      */
-    public function updatePosition(Position $position):Position
+    public function updateCoordinate(Coordinate $c):Coordinate
     {
-        $newPosX = $position->getPosX();
-        $newPosY = $position->getPosY();
-        switch($position->getDirection()){
+        $newPosX = $c->getPosX();
+        $newPosY = $c->getPosY();
+        switch($c->getDirection()){
             case 'N': //Move up
-                $newPosY = $position->getPosY()+1;
+                $newPosY = $c->getPosY()+1;
                 break;
             case 'S': //Move down
-                $newPosY = $position->getPosY()-1;
+                $newPosY = $c->getPosY()-1;
                 break;
             case 'E': //Move right
-                $newPosX = $position->getPosX()+1;
+                $newPosX = $c->getPosX()+1;
                 break;
             case 'W': //Move left
-                $newPosX = $position->getPosX()-1;
+                $newPosX = $c->getPosX()-1;
                 break;
         }
-        return new Position(
+        return new Coordinate(
             $newPosX,
             $newPosY,
-            $position->getDirection()
+            $c->getDirection()
         );
     }
 }

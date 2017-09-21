@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace FGhazaleh\Commands;
 
-
-use FGhazaleh\Location\Position;
+use FGhazaleh\Location\Coordinate;
 
 class SpinRightCommand implements CommandInterface
 {
@@ -18,29 +18,29 @@ class SpinRightCommand implements CommandInterface
     }
 
     /**
-     * @param Position $position
-     * @return Position ;
+     * @param Coordinate $c
+     * @return Coordinate ;
      */
-    public function updatePosition(Position $position):Position
+    public function updateCoordinate(Coordinate $c):Coordinate
     {
-        $newDirection = $position->getDirection();
-        switch($position->getDirection()){
+        $newDirection = $c->getDirection();
+        switch($c->getDirection()){
             case 'N': // +90d
-                $newDirection = Position::DIR_EAST;
+                $newDirection = Coordinate::DIR_EAST;
                 break;
             case 'S': // +90d
-                $newDirection = Position::DIR_WEST;
+                $newDirection = Coordinate::DIR_WEST;
                 break;
             case 'E': // +90d
-                $newDirection = Position::DIR_SOUTH;
+                $newDirection = Coordinate::DIR_SOUTH;
                 break;
             case 'W': // +90d
-                $newDirection = Position::DIR_NORTH;
+                $newDirection = Coordinate::DIR_NORTH;
                 break;
         }
-        return new Position(
-            $position->getPosX(),
-            $position->getPosY(),
+        return new Coordinate(
+            $c->getPosX(),
+            $c->getPosY(),
             $newDirection
         );
     }

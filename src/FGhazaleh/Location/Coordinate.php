@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace FGhazaleh\Location;
 
-class Position
+class Coordinate
 {
     const DIR_NORTH = 'N';
     const DIR_SOUTH = 'S';

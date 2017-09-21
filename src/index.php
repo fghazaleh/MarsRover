@@ -1,7 +1,7 @@
 <?php
 require_once 'bootstrap.php';
 
-use FGhazaleh\Location\Position;
+use FGhazaleh\Location\Coordinate;
 use FGhazaleh\MarsRobot\NasaRobotic;
 use FGhazaleh\Commands\SpinLeftCommand;
 use FGhazaleh\Commands\SpinRightCommand;
@@ -18,7 +18,7 @@ list($x,$y,$d) = explode(' ',$input1);
 $instructions = str_split($input2);
 
 
-$position = new Position($x,$y,$d);  // <=== defined position coordinates.
+$position = new Coordinate($x,$y,$d);  // <=== defined position coordinates.
 
 $robotic = new NasaRobotic($instructions,$position); // <=== create NasaRobotic instance
 
@@ -28,5 +28,5 @@ $robotic->addCommand(new MoveForwardCommand()) // <=== Add pre-defined commands.
 
 $robotic->exec(); // <==== Execute the provided instructions.
 
-echo $robotic->getPosition(); // <==== Get the last updated position after exec the instructions.
+echo $robotic->getCoordinate(); // <==== Get the last updated position after exec the instructions.
 echo PHP_EOL;

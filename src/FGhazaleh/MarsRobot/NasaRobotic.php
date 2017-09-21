@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace FGhazaleh\MarsRobot;
 
-
 use FGhazaleh\Commands\CommandInterface;
-use FGhazaleh\Location\Position;
+use FGhazaleh\Location\Coordinate;
 /**
  * @package: FGhazaleh\MarsRobot
  * @interface : NasaRobotic
@@ -20,24 +20,24 @@ class NasaRobotic
      * */
     private $instructions = [];
     /**
-     * @var Position
+     * @var Coordinate
      */
-    private $position;
+    private $coordinate;
     /**
      * @param array $instructions ;
-     * @param Position $position
+     * @param Coordinate $coordinate
      */
-    function __construct(array $instructions,Position $position){
-        $this->setPosition($position);
+    function __construct(array $instructions, Coordinate $coordinate){
+        $this->setCoordinate($coordinate);
         $this->setInstructions($instructions);
     }
     /**
-     * @param Position $position
+     * @param Coordinate $coordinate
      * @return NasaRobotic
      * */
-    public function setPosition(Position $position):NasaRobotic
+    public function setCoordinate(Coordinate $coordinate):NasaRobotic
     {
-        $this->position = $position;
+        $this->coordinate = $coordinate;
         return $this;
     }
     /**
@@ -69,17 +69,17 @@ class NasaRobotic
         foreach ($this->instructions as $instruction) {
             foreach($this->commands as $command){
                 if ( $command->isValidCommand($instruction) ){
-                    $this->position = $command->updatePosition($this->position);
+                    $this->coordinate = $command->updateCoordinate($this->coordinate);
                 }
             }
         }
         return $this;
     }
     /**
-     * @return Position;
+     * @return Coordinate;
      * */
-    public function getPosition():Position
+    public function getCoordinate():Coordinate
     {
-        return $this->position;
+        return $this->coordinate;
     }
 }

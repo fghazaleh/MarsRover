@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace FGhazaleh\Commands;
 
-use FGhazaleh\Location\Position;
+use FGhazaleh\Location\Coordinate;
 /**
  * @package: FGhazaleh\Commands
  * @interface : CommandInterface
@@ -16,8 +17,8 @@ interface CommandInterface
     public function isValidCommand($command):bool ;
 
     /**
-     * @param Position $position
-     * @return Position ;
+     * @param Coordinate $coordinate
+     * @return Coordinate ;
      */
-    public function updatePosition(Position $position):Position;
+    public function updateCoordinate(Coordinate $coordinate):Coordinate;
 }

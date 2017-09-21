@@ -3,7 +3,7 @@
 use FGhazaleh\Commands\MoveForwardCommand;
 use FGhazaleh\Commands\SpinLeftCommand;
 use FGhazaleh\Commands\SpinRightCommand;
-use FGhazaleh\Location\Position;
+use FGhazaleh\Location\Coordinate;
 use FGhazaleh\MarsRobot\NasaRobotic;
 
 class NasaRoboticTest extends PHPUnit_Framework_TestCase
@@ -14,14 +14,14 @@ class NasaRoboticTest extends PHPUnit_Framework_TestCase
      * */
     public function test_NasaRobotic($x,$y,$dir,$cmd,$expected)
     {
-        $p = new Position($x,$y,$dir);
+        $p = new Coordinate($x,$y,$dir);
         $i = str_split($cmd);
         $r = new NasaRobotic($i,$p);
         $r->addCommand(new MoveForwardCommand())
             ->addCommand(new SpinRightCommand())
             ->addCommand(new SpinLeftCommand());
 
-        $this->assertSame($expected,(string)$r->exec()->getPosition());
+        $this->assertSame($expected,(string)$r->exec()->getCoordinate());
     }
 
     /**

@@ -20,14 +20,14 @@ class MoveForwardCommandTest extends PHPUnit_Framework_TestCase
      * @test
      * */
     public function update_position_move_y_pos(){
-        $p = new \FGhazaleh\Location\Position(0,0,'N');
-        $this->assertSame('0 1 N', (string)$this->c->updatePosition($p));
+        $p = new \FGhazaleh\Location\Coordinate(0,0,'N');
+        $this->assertSame('0 1 N', (string)$this->c->updateCoordinate($p));
     }
     /**
      * @test
      * */
     public function update_position_move_x_pos(){
-        $p = new \FGhazaleh\Location\Position(0,0,'E');
-        $this->assertSame('1 0 E', (string)$this->c->updatePosition($p));
+        $p = new \FGhazaleh\Location\Coordinate(0,0,'E');
+        $this->assertSame('1 0 E', (string)$this->c->updateCoordinate($p));
     }
 }
